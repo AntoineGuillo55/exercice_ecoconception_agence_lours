@@ -17,6 +17,8 @@
  ExpiresByType application/javascript A2592000
  ExpiresByType application/x-javascript "access plus 2592000 seconds"
  ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
+ AddType font/woff2 .woff2
+ ExpiresByType font/woff2 "access plus 31536000 seconds"
 </IfModule>
 # END Expire headers
 
@@ -36,4 +38,7 @@ Header set Cache-Control "max-age=7200, public"
 Header unset Cache-Control
 </FilesMatch>
 </IfModule>
+<FilesMatch "\.(woff2?)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+</FilesMatch>
 # END Cache-Control Headers
