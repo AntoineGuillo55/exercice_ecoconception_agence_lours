@@ -157,7 +157,7 @@ body {
 }
 
 .div-hero-text-wrap>.div-hero-text-inner>.div-hero-cta-wrap>a.btn-hero-cta {
-    background-color: #b5742c;
+    background-color: #734A1C;
     color: #ffffff;
     border: none;
     padding: 16px 45px;
@@ -173,7 +173,7 @@ body {
 }
 
 .div-hero-text-wrap>.div-hero-text-inner>.div-hero-cta-wrap>a.btn-hero-cta:hover {
-    background-color: #8f5a1f;
+    background-color: #6E4817;
 }
 
 /* ============================================ */
@@ -258,7 +258,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 16px;
-    color: #b5742c;
+    color: #734A1C;
 }
 
 /* ============================================ */
