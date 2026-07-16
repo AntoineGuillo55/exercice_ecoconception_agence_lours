@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyages Lours - L'agence qui vous emmène trop loin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=auto"
+        rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            color: #2c2c2c;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .div-wrapper-page {
+            width: 100%;
+        }
+
+        .div-wrapper-page>.div-container-main {
+            width: 100%;
+        }
+
+        .div-container-main>.div-inner-shell {
+            width: 100%;
+            position: relative;
+        }
+
+        .div-inner-shell>.div-content-zone>.div-content-zone-inner {
+            width: 100%;
+        }
+
+        /* Sélecteur sur-spécifique et inutilement complexe */
+        .div-wrapper-page>.div-container-main>.div-inner-shell>.div-content-zone>.div-content-zone-inner>.div-section-block:nth-of-type(odd) {
+            background-color: #faf9f7;
+        }
+
+        .div-wrapper-page>.div-container-main>.div-inner-shell>.div-content-zone>.div-content-zone-inner>.div-section-block:nth-of-type(even) {
+            background-color: #ffffff;
+        }
+
+        /* ============================================ */
+        /* HEADER / NAVIGATION                           */
+        /* ============================================ */
+        .div-header-outer-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .div-header-outer-wrap>.div-header-inner-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+
+        .div-header-inner-wrap>.div-logo-zone>.div-logo-zone-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 28px;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+        }
+
+        .div-header-inner-wrap>.div-nav-zone>.div-nav-list {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .div-nav-list>.div-nav-item>.div-nav-link {
+            text-decoration: none;
+            color: #2c2c2c;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .div-nav-list>.div-nav-item>.div-nav-link:hover {
+            color: #b5742c;
+        }
+
+        .div-hero-outer-wrap {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .div-hero-outer-wrap>.div-hero-video-wrap>video.hero-bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            object-fit: cover;
+        }
+
+        .div-hero-outer-wrap>.div-hero-overlay-wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 2;
+        }
+
+        .div-hero-outer-wrap>.div-hero-text-wrap {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            padding: 0 20px;
+        }
+
+        .div-hero-text-wrap>.div-hero-text-inner>h1.hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 64px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .div-hero-text-wrap>.div-hero-text-inner>p.hero-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 20px;
+            margin-bottom: 35px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .div-hero-text-wrap>.div-hero-text-inner>.div-hero-cta-wrap>button.btn-hero-cta {
+            background-color: #b5742c;
+            color: #ffffff;
+            border: none;
+            padding: 16px 45px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .div-hero-text-wrap>.div-hero-text-inner>.div-hero-cta-wrap>button.btn-hero-cta:hover {
+            background-color: #8f5a1f;
+        }
+
+        /* ============================================ */
+        /* SECTIONS GENERIQUES                            */
+        /* ============================================ */
+        .div-section-block {
+            padding: 100px 40px;
+        }
+
+        .div-section-block>.div-section-inner-max-width {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .div-section-inner-max-width>.div-section-title-wrap>h2.section-main-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .div-section-inner-max-width>.div-section-title-wrap>p.section-main-subtitle {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 17px;
+            text-align: center;
+            color: #6b6b6b;
+            margin-bottom: 60px;
+        }
+
+        .div-destinations-grid-outer>.div-destinations-grid-inner {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .div-destinations-grid-inner>.div-destination-card-wrap {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .div-destination-card-wrap>.div-destination-image-wrap>.div-destination-image-inner>img.destination-photo {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .div-destination-card-wrap>.div-destination-caption-wrap>.div-destination-caption-inner {
+            padding: 25px 20px;
+            background-color: #ffffff;
+        }
+
+        .div-destination-caption-inner>h3.destination-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .div-destination-caption-inner>p.destination-desc {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 14px;
+            color: #6b6b6b;
+            line-height: 1.6;
+        }
+
+        .div-destination-caption-inner>span.destination-price {
+            display: inline-block;
+            margin-top: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #b5742c;
+        }
+
+        /* ============================================ */
+        /* SECTION A PROPOS / IMAGE FULL                  */
+        /* ============================================ */
+        .div-about-outer-wrap>.div-about-grid-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .div-about-grid-inner>.div-about-image-col>.div-about-image-col-inner>img.about-big-photo {
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        .div-about-grid-inner>.div-about-text-col>.div-about-text-col-inner>h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 36px;
+            margin-bottom: 25px;
+        }
+
+        .div-about-grid-inner>.div-about-text-col>.div-about-text-col-inner>p {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #4a4a4a;
+            margin-bottom: 15px;
+        }
+
+        /* ============================================ */
+        /* TEMOIGNAGES                                   */
+        /* ============================================ */
+        .div-testimonials-outer>.div-testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .div-testimonials-grid>.div-testimonial-card>.div-testimonial-card-inner {
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .div-testimonial-card-inner>.div-testimonial-quote-wrap>p.testimonial-quote {
+            font-style: italic;
+            font-size: 15px;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .div-testimonial-card-inner>.div-testimonial-author-wrap>span.testimonial-author {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #1a1a1a;
+        }
+
+        /* ============================================ */
+        /* FOOTER                                        */
+        /* ============================================ */
+        .div-footer-outer-wrap {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 60px 40px 30px;
+        }
+
+        .div-footer-outer-wrap>.div-footer-inner-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .div-footer-inner-wrap>.div-footer-logo>p {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .div-footer-inner-wrap>.div-footer-bottom-line>p {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 13px;
+            color: #999999;
+            margin-top: 30px;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE (ajouté un peu au hasard, en vrac)  */
+        /* ============================================ */
+        @media (max-width: 900px) {
+
+            .div-destinations-grid-inner,
+            .div-testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .div-about-grid-inner {
+                grid-template-columns: 1fr;
+            }
+
+            h1.hero-title {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="div-wrapper-page">
+        <div class="div-container-main">
+            <div class="div-inner-shell">
+
+                <!-- HEADER -->
+                <div class="div-header-outer-wrap">
+                    <div class="div-header-inner-wrap">
+                        <div class="div-logo-zone">
+                            <div class="div-logo-zone-text">🐻 Voyages Lours</div>
+                        </div>
+                        <div class="div-nav-zone">
+                            <div class="div-nav-list">
+                                <div class="div-nav-item">
+                                    <div class="div-nav-link" onclick="scrollToSection('destinations')">Destinations
+                                    </div>
+                                </div>
+                                <div class="div-nav-item">
+                                    <div class="div-nav-link" onclick="scrollToSection('apropos')">À propos</div>
+                                </div>
+                                <div class="div-nav-item">
+                                    <div class="div-nav-link" onclick="scrollToSection('avis')">Avis</div>
+                                </div>
+                                <div class="div-nav-item">
+                                    <div class="div-nav-link" onclick="scrollToSection('contact')">Contact</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="div-hero-outer-wrap">
+                    <div class="div-hero-video-wrap">
+                        <video class="hero-bg-video" autoplay loop playsinline
+                            poster="https://picsum.photos/id/1018/4000/3000">
+                            <source src="https://www.w3schools.com/html/mov_bbb.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="div-hero-overlay-wrap"></div>
+                    <div class="div-hero-text-wrap">
+                        <div class="div-hero-text-inner">
+                            <h1 class="hero-title">L'aventure commence ici</h1>
+                            <p class="hero-subtitle">Voyages Lours — des souvenirs grandeur nature, sans compromis</p>
+                            <div class="div-hero-cta-wrap">
+                                <button class="btn-hero-cta" onclick="scrollToSection('destinations')">Découvrir nos
+                                    voyages</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="div-content-zone">
+                    <div class="div-content-zone-inner">
+
+                        <div class="div-section-block" id="destinations">
+                            <div class="div-section-inner-max-width">
+                                <div class="div-section-title-wrap">
+                                    <h2 class="section-main-title">Nos destinations vedettes</h2>
+                                    <p class="section-main-subtitle">Cinq évasions à couper le souffle (et la bande
+                                        passante)</p>
+                                </div>
+                                <div class="div-destinations-grid-outer">
+                                    <div class="div-destinations-grid-inner">
+
+                                        <div class="div-destination-card-wrap">
+                                            <div class="div-destination-image-wrap">
+                                                <div class="div-destination-image-inner">
+                                                    <img class="destination-photo"
+                                                        src="https://picsum.photos/id/1015/4000/3000">
+                                                </div>
+                                            </div>
+                                            <div class="div-destination-caption-wrap">
+                                                <div class="div-destination-caption-inner">
+                                                    <h3 class="destination-name">Bali, Indonésie</h3>
+                                                    <p class="destination-desc">Plages de sable doré et rizières en
+                                                        terrasses à perte de vue.</p>
+                                                    <span class="destination-price">à partir de 1 290 €</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="div-destination-card-wrap">
+                                            <div class="div-destination-image-wrap">
+                                                <div class="div-destination-image-inner">
+                                                    <img class="destination-photo"
+                                                        src="https://picsum.photos/id/1016/4000/3000">
+                                                </div>
+                                            </div>
+                                            <div class="div-destination-caption-wrap">
+                                                <div class="div-destination-caption-inner">
+                                                    <h3 class="destination-name">Fjords de Norvège</h3>
+                                                    <p class="destination-desc">Falaises spectaculaires et eaux glacées
+                                                        d'un calme absolu.</p>
+                                                    <span class="destination-price">à partir de 1 890 €</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="div-destination-card-wrap">
+                                            <div class="div-destination-image-wrap">
+                                                <div class="div-destination-image-inner">
+                                                    <img class="destination-photo"
+                                                        src="https://picsum.photos/id/1019/4000/3000">
+                                                </div>
+                                            </div>
+                                            <div class="div-destination-caption-wrap">
+                                                <div class="div-destination-caption-inner">
+                                                    <h3 class="destination-name">Kyoto, Japon</h3>
+                                                    <p class="destination-desc">Temples ancestraux et jardins zen au fil
+                                                        des saisons.</p>
+                                                    <span class="destination-price">à partir de 2 150 €</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="div-destination-card-wrap">
+                                            <div class="div-destination-image-wrap">
+                                                <div class="div-destination-image-inner">
+                                                    <img class="destination-photo"
+                                                        src="https://picsum.photos/id/1024/4000/3000">
+                                                </div>
+                                            </div>
+                                            <div class="div-destination-caption-wrap">
+                                                <div class="div-destination-caption-inner">
+                                                    <h3 class="destination-name">Patagonie</h3>
+                                                    <p class="destination-desc">Glaciers immenses et randonnées au bout
+                                                        du monde.</p>
+                                                    <span class="destination-price">à partir de 2 490 €</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="div-destination-card-wrap">
+                                            <div class="div-destination-image-wrap">
+                                                <div class="div-destination-image-inner">
+                                                    <img class="destination-photo"
+                                                        src="https://picsum.photos/id/1036/4000/3000">
+                                                </div>
+                                            </div>
+                                            <div class="div-destination-caption-wrap">
+                                                <div class="div-destination-caption-inner">
+                                                    <h3 class="destination-name">Désert du Sahara</h3>
+                                                    <p class="destination-desc">Dunes infinies et nuits étoilées sous
+                                                        tente berbère.</p>
+                                                    <span class="destination-price">à partir de 1 590 €</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===================================================== -->
+                        <!-- SECTION A PROPOS                                       -->
+                        <!-- ===================================================== -->
+                        <div class="div-section-block" id="apropos">
+                            <div class="div-section-inner-max-width">
+                                <div class="div-about-outer-wrap">
+                                    <div class="div-about-grid-inner">
+                                        <div class="div-about-image-col">
+                                            <div class="div-about-image-col-inner">
+                                                <img class="about-big-photo"
+                                                    src="https://picsum.photos/id/1048/4000/3000">
+                                            </div>
+                                        </div>
+                                        <div class="div-about-text-col">
+                                            <div class="div-about-text-col-inner">
+                                                <h2>Qui sommes-nous ?</h2>
+                                                <p>Depuis 1998, Voyages Lours conçoit des itinéraires sur-mesure pour
+                                                    les explorateurs exigeants, sans jamais se soucier de leur
+                                                    empreinte.</p>
+                                                <p>Notre équipe de passionnés sillonne le globe pour dénicher les
+                                                    expériences les plus mémorables, peu importe le coût
+                                                    environnemental.</p>
+                                                <p>Faites confiance à notre expertise pour transformer vos envies
+                                                    d'ailleurs en souvenirs inoubliables.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===================================================== -->
+                        <!-- SECTION TEMOIGNAGES                                    -->
+                        <!-- ===================================================== -->
+                        <div class="div-section-block" id="avis">
+                            <div class="div-section-inner-max-width">
+                                <div class="div-section-title-wrap">
+                                    <h2 class="section-main-title">Ils ont voyagé avec nous</h2>
+                                    <p class="section-main-subtitle">Des avis aussi authentiques que nos voyages</p>
+                                </div>
+                                <div class="div-testimonials-outer">
+                                    <div class="div-testimonials-grid">
+
+                                        <div class="div-testimonial-card">
+                                            <div class="div-testimonial-card-inner">
+                                                <div class="div-testimonial-quote-wrap">
+                                                    <p class="testimonial-quote">"Un voyage exceptionnel, organisé dans
+                                                        les moindres détails. Je recommande vivement Voyages Lours !"
+                                                    </p>
+                                                </div>
+                                                <div class="div-testimonial-author-wrap">
+                                                    <span class="testimonial-author">— Claire M.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="div-testimonial-card">
+                                            <div class="div-testimonial-card-inner">
+                                                <div class="div-testimonial-quote-wrap">
+                                                    <p class="testimonial-quote">"L'équipe a su transformer notre lune
+                                                        de miel en moment magique. Merci infiniment."</p>
+                                                </div>
+                                                <div class="div-testimonial-author-wrap">
+                                                    <span class="testimonial-author">— Julien & Sarah</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="div-testimonial-card">
+                                            <div class="div-testimonial-card-inner">
+                                                <div class="div-testimonial-quote-wrap">
+                                                    <p class="testimonial-quote">"Service impeccable du premier au
+                                                        dernier jour. On repart déjà avec eux l'année prochaine."</p>
+                                                </div>
+                                                <div class="div-testimonial-author-wrap">
+                                                    <span class="testimonial-author">— Marc D.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===================================================== -->
+                        <!-- FOOTER / CONTACT                                       -->
+                        <!-- ===================================================== -->
+                        <div class="div-footer-outer-wrap" id="contact">
+                            <div class="div-footer-inner-wrap">
+                                <div class="div-footer-logo">
+                                    <p>🐻 Voyages Lours</p>
+                                </div>
+                                <div class="div-footer-contact-line">
+                                    <p>contact@voyages-lours.fake — +33 1 23 45 67 89</p>
+                                </div>
+                                <div class="div-footer-bottom-line">
+                                    <p>© 2026 Voyages Lours. Site pédagogique - démonstration d'anti-patterns
+                                        d'éco-conception web.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function scrollToSection(sectionId) {
+            var targetElement = document.getElementById(sectionId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // ============================================================
+        // Antipattern #2 : on utilise jQuery pour des opérations
+        // ultra basiques qui n'en avaient absolument pas besoin
+        // ============================================================
+        $(document).ready(function () {
+
+            // jQuery pour ajouter une classe au scroll - totalement
+            // dispensable, un simple addEventListener aurait suffi
+            $(window).on('scroll', function () {
+                if ($(window).scrollTop() > 50) {
+                    $('.div-header-outer-wrap').css('box-shadow', '0 2px 20px rgba(0,0,0,0.15)');
+                } else {
+                    $('.div-header-outer-wrap').css('box-shadow', '0 2px 10px rgba(0,0,0,0.08)');
+                }
+            });
+
+            // jQuery pour un simple effet de survol sur les cartes,
+            // alors qu'un :hover en CSS pur ferait exactement le même travail
+            $('.div-destination-card-wrap').hover(
+                function () {
+                    $(this).css('transform', 'translateY(-5px)');
+                    $(this).css('transition', 'transform 0.3s ease');
+                },
+                function () {
+                    $(this).css('transform', 'translateY(0)');
+                }
+            );
+
+            console.log('jQuery chargé et initialisé (alors que ce n\'était pas nécessaire) 🐻');
+        });
+
+        // ============================================================
+        // Antipattern #6 : simulation de 10 appels API fictifs
+        // lancés de façon SÉQUENTIELLE (chaîne de Promises en cascade)
+        // au chargement de la page, sans aucune utilité réelle pour
+        // l'utilisateur. Chaque appel attend la fin du précédent
+        // avant de démarrer, ce qui multiplie inutilement le temps
+        // de chargement perçu et la consommation réseau/CPU.
+        // ============================================================
+
+        // Fonction factice qui simule un appel réseau vers une API
+        // fictive avec un délai artificiel, pour bien illustrer le
+        // gaspillage de ressources engendré par ce genre de pattern
+        function appelApiFictif(nomDuService, delaiSimuleMs) {
+            return new Promise(function (resolve) {
+                console.log('📡 Appel API fictif lancé vers : ' + nomDuService);
+                setTimeout(function () {
+                    console.log('✅ Réponse reçue de : ' + nomDuService);
+                    resolve({
+                        service: nomDuService,
+                        statut: 'ok',
+                        horodatage: new Date().toISOString()
+                    });
+                }, delaiSimuleMs);
+            });
+        }
+
+        // Liste des 10 "services" fictifs interrogés au chargement.
+        // Dans un vrai projet, aucun de ces appels ne devrait être
+        // nécessaire pour afficher une simple page vitrine one-page.
+        var listeServicesFictifs = [
+            { nom: 'service-meteo-destinations', delai: 300 },
+            { nom: 'service-taux-de-change', delai: 250 },
+            { nom: 'service-stock-disponibilite', delai: 400 },
+            { nom: 'service-recommandations-utilisateur', delai: 350 },
+            { nom: 'service-statistiques-visites', delai: 200 },
+            { nom: 'service-publicites-ciblees', delai: 450 },
+            { nom: 'service-avis-clients-supplementaires', delai: 300 },
+            { nom: 'service-tracking-marketing', delai: 250 },
+            { nom: 'service-newsletter-popup', delai: 200 },
+            { nom: 'service-chatbot-preinitialisation', delai: 350 }
+        ];
+
+        // Fonction qui déclenche les appels les uns après les autres
+        // (et non en parallèle), ce qui est la pire approche possible
+        // en termes de performance ET d'empreinte écologique, puisque
+        // le temps total = somme de tous les délais au lieu du max
+        function lancerSequenceAppelsApiFictifs(index) {
+            if (index >= listeServicesFictifs.length) {
+                console.log('🏁 Les 10 appels API fictifs séquentiels sont terminés.');
+                return;
+            }
+
+            var serviceCourant = listeServicesFictifs[index];
+
+            appelApiFictif(serviceCourant.nom, serviceCourant.delai).then(function (reponse) {
+                // On ne fait absolument rien d'utile avec la réponse,
+                // c'est uniquement pour illustrer le gaspillage
+                console.log('Donnée fictive reçue mais inutilisée :', reponse);
+
+                // Appel récursif vers le service suivant, UNIQUEMENT
+                // après que le précédent soit terminé (séquentiel)
+                lancerSequenceAppelsApiFictifs(index + 1);
+            });
+        }
+
+        // Déclenchement de toute la séquence dès le chargement complet
+        // de la page, sans interaction de l'utilisateur, et sans que
+        // cela ne conditionne l'affichage d'aucun contenu réel
+        window.addEventListener('load', function () {
+            console.log('🚀 Démarrage de la séquence des 10 appels API fictifs...');
+            lancerSequenceAppelsApiFictifs(0);
+        });
+
+    </script>
+
+</body>
+
+</html>
