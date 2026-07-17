@@ -26,7 +26,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: output-destination
-          path: ecoindex.json
+          path: ecoindex/ecoindex.json
           
         
     
