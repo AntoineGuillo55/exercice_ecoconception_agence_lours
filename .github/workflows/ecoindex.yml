@@ -1,0 +1,29 @@
+name: ecoindex-check
+run-name: ${{github.actor}} is running ecoindex check
+on: push
+jobs:
+  launch-ecoindex-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Launch analysis
+        id: lauchAnalysis
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://api.ecoindex.fr/v1/tasks/ecoindexes/'
+          method: 'POST'
+          data: '{"web_page": {"width": 1920, "height": 1080, "url": "https://agence-lours.antoineguillo.com"}, "custom_headers": {}'
+      - name: Get analysis result
+        id: getAnalysis
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://api.ecoindex.fr/v1/tasks/ecoindexes/${{fromJson(steps.lauchAnalysis.outputs.response).detail.latest-result.id}}'
+          method: 'GET'
+      - name: Store analysis
+        id: storeAnalysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-destination
+          path: ecoindex.json
+          
+        
+    
