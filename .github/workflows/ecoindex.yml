@@ -16,7 +16,7 @@ jobs:
         id: getAnalysis
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://api.ecoindex.fr/v1/tasks/ecoindexes/${{fromJson(steps.lauchAnalysis.outputs.response).detail.latest-result.id}}'
+          url: 'https://api.ecoindex.fr/v1/tasks/ecoindexes/${{fromJson(steps.lauchAnalysis.outputs.response)}}'
           method: 'GET'
       - name: Store analysis
         id: storeAnalysis
