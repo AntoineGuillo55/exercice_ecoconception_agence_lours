@@ -51,8 +51,8 @@ jobs:
           path: 'ecoindex'
           isAbsolutePath: 'false'
           file: ecoindex-analysis-${{steps.date.outputs.date}}.json
-          content: ${{ fromJson(steps.getAnalysis.outputs.response) }}
+          content: ${{ steps.getAnalysis.outputs.response }}
 
-      # Commit suite à la création du fichier 
+      # Commit suite à la création du fichier
       - uses: stefanzweifel/git-auto-commit-action@v7
     
