@@ -12,6 +12,9 @@ jobs:
           url: 'https://api.ecoindex.fr/v1/tasks/ecoindexes/'
           method: 'POST'
           data: '{"web_page": {"width": 1920, "height": 1080, "url": "https://agence-lours.antoineguillo.com"}, "custom_headers": {"Accept": "application/json"}}'
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
       - name: Get analysis result
         id: getAnalysis
         uses: fjogeleit/http-request-action@v1
