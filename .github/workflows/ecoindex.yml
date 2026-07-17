@@ -13,7 +13,7 @@ jobs:
           method: 'POST'
           data: '{"web_page": {"width": 1920, "height": 1080, "url": "https://agence-lours.antoineguillo.com"}, "custom_headers": {"Accept": "application/json"}}'
       - name: Sleep for 30 seconds
-        run: sleep 30s
+        run: sleep 120s
         shell: bash
       - name: Get analysis result
         id: getAnalysis
